@@ -1,6 +1,30 @@
 
 classDiagram
+    direction LR
+
     class Main {
         -Main()
         +main(args: String[]) void
     }
+
+    class Przedmiot {
+        -String nazwa
+        -double waga
+        +Przedmiot(nazwa: String, waga: double)
+        +getNazwa() String
+        +getWaga() double
+    }
+
+    class Walizka {
+        -List~Przedmiot~ przedmioty
+        -double limitWagi
+        +Walizka(limit: double)
+        +dodajPrzedmiot(p: Przedmiot) void
+        +obliczWage() double
+        +miesciSieWLimicie() boolean
+        +getLimitWagi() double
+    }
+
+    Main ..> Walizka : tworzy
+    Main ..> Przedmiot : tworzy
+    Walizka "1" o-- "0..*" Przedmiot : przechowuje
